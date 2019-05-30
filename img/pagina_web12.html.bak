@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+    <title>pagina_web_Joan</title>
+    <meta name="description" content="website descript">
+    <meta name="keywords" content="website keywords, website keywords">
+    <link rel="stylesheet" type="text/css" href="style/style.css">
+  </head>
+  <body>
+    <div id="main">
+      <div id="header">
+        <div id="logo">
+          <div id="logo_text" style="top: 40px; left: 179px;">
+            <h1><a> PAGINA WEB<span class="logo_colour"></span></a></h1>
+            <h2><br>
+            </h2>
+          </div>
+          <div id="contact_details" style="top: 40px; left: 643px; width: 140px; height: 40px;">
+            <p></p>
+            <h5 align="center">Tel:<br>
+              662 360 550</h5>
+            <p></p>
+            <p></p>
+            <h5 align="center"> Correo:<br>
+              llobe_12@hotmail.com</h5>
+            <p></p>
+          </div>
+        </div>
+        <br>
+        <div id="menubar">
+          <ul id="menu">
+            <li><br>
+            </li>
+            <li><br>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div id="site_content">
+        <div class="sidebar">&nbsp;<b>&nbsp; Enlaces Visores </b>
+          <ul>
+            <li><a href="file:///C:/Users/Usuario/github/Mapa_2D_Fiscal/qgis2web_2019_02_23-13_09_36_320691/MunicipioFiscal_2D.html#12/42.4979/-0.0422">Visor
+                QGIS web</a></li>
+            <li><a href="https://www.google.com/maps/d/u/0/embed?mid=1YBC4f-cmPCLkd2RlGX112eam1lI"
+                width="640" height="480">Campos de futbol a traves de google
+                Drive</a></li>
+            <li><a href="file:///C:/tmp/qgis2web/qgis2web_2019_05_27-18_20_51_032625/poblacion_mundial.html#1/0/28">Poblacion
+                mundial</a></li>
+            <li><a href="#">Visor con leaflet</a></li>
+          </ul>
+          <h3><br>
+          </h3>
+          <br>
+        </div>
+        <div> </div>
+        <div style="margin-top: -16px;"><img src="file:///C:/Users/Usuario/github/10710/simplestyle_2/style/bullet.png"
+            alt="c" title="c">Buenas, a todas las personas que visitan esta
+          pagina web.</div>
+        <div><br>
+        </div>
+        <div style="height: 31px;"><img src="file:///C:/Users/Usuario/github/10710/simplestyle_2/style/bullet.png"
+            alt="c" title="c">Os presento esta pagina en la que se presentan una
+          variedad de ejemplos sobre visualizacion web asi como distintos
+          visores realizados con distintas plataformas como QGISweb, Drive o
+          leaflet. </div>
+        <div><br>
+          <div><img src="file:///C:/Users/Usuario/github/10710/simplestyle_2/style/bullet.png"
+              alt="c" title="c">Respecto al visor de QGISweb este se ha basado
+            en dos visores. Por un lado, el inventario forestal del municipio de
+            Fiscal localizalizado en la provincia de Huesca. Por otro lado, se
+            ha realizado un visor sobre la poblacion mundial en distintas
+            ciudades del mundo.</div>
+          <div><br>
+          </div>
+          <div><img src="file:///C:/Users/Usuario/github/10710/simplestyle_2/style/bullet.png"
+              alt="c" title="c">En cuanto al video que se presenta en la parte
+            inferior corresponde&nbsp; parte oriental de la costa de Mexico en
+            el momento que se produjo un huracan descargado desde&nbsp; Leaflet</div>
+          <div><br>
+            <div><img src="file:///C:/Users/Usuario/github/10710/simplestyle_2/style/bullet.png"
+                alt="c" title="c">Para mas informacion suscribiros a mi canal de
+              youtube o entrat en mi pagina de git.hub</div>
+            <div><br>
+              <li><a href="https://github.com/JoanLloberaCerda">Pagina de github</a></li>
+              <div style="margin-top: 3px;"><br>
+                <video controls="controls" width="500"> <source src="https://www.mapbox.com/bites/00188/patricia_nasa.webm"
+                    type="video/webm"> <source src="https://www.mapbox.com/bites/00188/patricia_nasa.mp4"
+                    type="video/mp4"> </video> </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

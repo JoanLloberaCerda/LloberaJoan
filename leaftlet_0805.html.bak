@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Mi primer mapa web con Leaflet</title>
+    <!--PRIMER APARTADO
+<!-- enlace a código CSS de Leaflet en la cabecera hoja estilo-->
+    <link rel="stylesheet" href="./leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin="">
+    <!-- enlace a JavaScript de Leaflet (justo tras CSS) -->
+    <script src="./leaflet.js" integrity="sha512-3Wcxp7F9bV2pl+MBgrL6Pz7AJASLpemmQPIiPA0lDs3ImF0z4JuuMIBPeirLbgIuhfH2gJyGWZjvm6M+Zr7L6Q=="
+crossorigin=""></script>
+  </head>
+  <body>
+    <h1 style="text-align: center; width: 687px;"><span style="color: #144b03;">Visor realizado a partir de Leaflet</span> </h1>
+    <h4 style="width: 637px; text-align: center;"> <span style="color: #36a472;">Por un lado aparecen las distintas provincias de la comunidad automonoma de Aragon. En segundo lugar se puede localizar el municipio de Pollença en Mallorca, Islas Baleares con el circulo
+        amarillo</span></h2>
+    <!-- cargar javascript (objeto GeoJSON transformado) -->
+    <script src="provincias.js"></script>
+    <!-- BLOQUES PARA REPRESENTAR EL MAPA-->
+    <!-- bloque dónde aparecerá el mapa -->
+    <div id="bloque_mapa" style="width: 500px; height: 400px;"></div>
+    <!-- identificador bloque con los respectivos valores -->
+    <style type="text/css" title="estilo personal">
+html, body, #mapa {width: 400px; height: 400px;} </style>
+    <div #mapa="" id="bloque_mapa",></div>
+    <!-- SCRIPT PARA ELEABORAR EL MAPA-->
+    <script>
+// definimos el mapa como una varianble y le ajustamos dónde lo queremos ver
+    var mi_mapa = L.map('bloque_mapa').setView([39, -3], 5); <!-- donde se añadira la informacion, es decir no sera bloque_mapa sino mi_mapa -->
+
+// añadimos mapa de fondo
+    L.tileLayer(
+    // dirección de las tiles
+    'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw',
+   // propiedades
+   { maxZoom: 10,  // zoom máximo 10 no se podra hacer más zoom de 10
+    // Líneas de atribución
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' + '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+        id: 'mapbox.streets'
+    }).addTo(mi_mapa);
+
+      // añadimos círculo en el municipio de Pollença
+      var circle = L.circle(      // variable círculo en esas coordenadas
+              [39.86, 3.], {               // coordenadas del centro, en especial mi municipio
+              color: 'yellow',             // estilo color
+              fillColor: 'orange',        //        color de relleno
+              fillOpacity: 0.6,         //        opacidad del relleno
+              radius: 3000            //        radio: 300Km
+              }).addTo(mi_mapa);        // se añade al mapa
+
+// GeoJSON \\
+
+// añadir capa GeoJSON de las provincias de Aragon
+          var provincias = L.geoJSON(provincias);
+          provincias.addTo(mi_mapa)
+
+
+// CAPAS Y CONTROLES \\
+
+// TMS
+var stamen_tms = L.tileLayer(
+  'http://a.tile.stamen.com/terrain/{z}/{x}/{y}.png', { // URL con tiles
+      // texto de atribución
+      attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>,<a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash;Map data: &copy; <a href="http://openstreetmap.org">OpenStreetMap</a>contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+      maxZoom: 20  // zoom máximo
+      });
+  stamen_tms.addTo(mi_mapa);
+//TMS2\\  // añadir TM de OpenStreetMap render Mapnik
+var OSM_mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+});
+  OSM_mapnik.addTo(mi_mapa);
+
+// PARA DESCARGAR UN PNOA \\
+
+var PNOA = L.tileLayer.wms('http://www.idee.es/wms/PNOA/PNOA?', {  //URL WMS proporcionada en internet
+      layers: 'PNOA',          // capa del WMS
+      format: 'image/png',     // tipo de formato
+      transparent: true,       // activa capa alfa/transparente, si se le pone false no aparece transparencia el mapa base desapareceria y solamente apareceria el PNOA.
+      });
+  PNOA.addTo(mi_mapa);         // añadir capa al mapa
+
+// PARA INCLUIR CONTROLES PARA QUE PUEDAS ELEGIR ENTRE DIFERENTES MAPAS SUPERPUESTOS --> definir variables
+  var baseMaps = {                  // variable con apartado de mapas base, dentro hay dos elementos entre llaves
+      "OpenStreetMap": OSM_mapnik,  // añadimos el mapa en formato stamen y de openstreetmape.
+      "Stamen": stamen_tms,
+      };
+  var overlayMaps = {              // apartado de capas
+      "Ortotfoto PNOA": PNOA       // añadimos el pnoa de la maxima actualidad
+      };
+
+  var capas = L.control.layers(   // variable con control de capas
+    baseMaps,                     // añadiendo capas base
+    overlayMaps,
+    circle,                   // añadiendo capas que se van a superponer y activar o desactivar
+    {collapsed:true});            // control desplegado, para que esten plegadas o no
+  capas.addTo(mi_mapa);           // añadimos control de capas al mapa
+
+<!-- para añadir una escala al mapa -->
+
+  var escala = L.control.scale({position:'bottomright'}); <!--posicion derecha inferior-->
+  imperial:true;
+  escala.addTo(mi_mapa);
+
+
+</script>
+  </body>
+</html>
